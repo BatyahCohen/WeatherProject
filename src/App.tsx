@@ -57,7 +57,12 @@ function App()
  
  
   useEffect(() => {
-    updatedAreasByApi()    
+    updatedAreasByApi() 
+    
+    const interval = setInterval(() => {
+        updatedAreasByApi()   
+    }, 900000);
+   
   }, []);
 
 
