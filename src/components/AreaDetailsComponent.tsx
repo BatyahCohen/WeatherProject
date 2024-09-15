@@ -10,7 +10,7 @@ export const AreaDetailsComponent = (props:any) =>
       <div>
       <h2>{area.name}</h2>
       <p>{area.description}</p> 
-      <span>סמל</span>
+      <span>{area.feelsLike<20?"🥶":(area.feelsLike>30?"🥵":"😎")}</span>
       <ul>
         <li>{area.temp}°C</li>
         <li>{area.feelsLike}°C</li>
