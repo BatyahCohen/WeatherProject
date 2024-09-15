@@ -14,14 +14,15 @@ function App()
     new AreaDetailsClass("ניו יורק","",500,500,500,74.0060,40.7128),
   ]);
 
+  //פונקציה אסינכרונית המקבלת קווי אורך ורוחב ומחזירה מידע מהשרת מהו מזג האוויר באזור זה
   async function ApiConnect(lat:any,lon:any) {
     try {
       const apiKey = 'abc79528bbc77eafa1af5743ad2318e1'; 
 
       const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}&units=metric&lang=he`;
-
+      //response המידע שחוזר הוא מסוג
       let response = await fetch(url);
-     
+     //json המרת המידע שהתקבל מהשרת לאוביקט
       let responseJson = await response.json();
      
       console.log(responseJson)
@@ -34,12 +35,17 @@ function App()
     }
   }
   
+  //פונקציה אסינכרונית המעדכנת את מערך האזורים במידע המתקבל מהשרת
   const updatedAreasByApi = async () => {
    
+    // יצירת מערך מקומי שיחזיק את כל האזורים המעודכנים
+    // רק לאחר שיושלמו כל הקריאות לשרת יוחזר המערך בשלמותו promise.all מכיוון שאני משתמשת ב
     const updatedAreas:Array<AreaDetailsClass> = await Promise.all(  
       areas.map(async (area) => {
+        //קבלת מידע מהשרת על האזור הנוכחי
         const responseJson = await ApiConnect(area.lat, area.lon);
       
+        //יצירת אוביקט אזור מעודכן עפ"י המידע שהתקבל מהשרת והחזרתו למערך המקומי 
         return new AreaDetailsClass(
           area.name,
           responseJson.weather[0].description,
@@ -52,13 +58,15 @@ function App()
       })
     );
    
+    //עדכון מערך האזורים במידע שהתקבל מהשרת
     setAreas(updatedAreas)
   }
  
- 
+ //פונקציה המתבצעת בעת טעינת הדף
   useEffect(() => {
     updatedAreasByApi() 
-    
+
+    //שיקרא לפונקציה המעדכת את מזג האויר בכל רבע שעה interval יצירת 
     const interval = setInterval(() => {
         updatedAreasByApi()   
     }, 900000);
@@ -70,6 +78,8 @@ function App()
     <div className="App" >
       {areas?.map((area:AreaDetailsClass)=>(
         <div key={area.name}>
+          {/* רק במידה וחזר מידע מהשרת ארצה להציג את נתוני מזג האויר 
+          לכן אבדוק האם הנתונים שונים מהנתונים הראשוניים (והבלתי אפשריים) שאני הזנתי */}
         {area.temp!=500 && <AreaDetailsComponent area={area}></AreaDetailsComponent>}
         </div>
       ))}

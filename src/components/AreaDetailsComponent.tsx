@@ -3,7 +3,7 @@ import { AreaDetailsClass } from "../classes/AreaDetailsClass";
 
 export const AreaDetailsComponent = (props:any) =>
 {
-
+  //שליפת המידע שנשלח מקומפוננטת האבא
   let area=props.area; 
 
  return( 
