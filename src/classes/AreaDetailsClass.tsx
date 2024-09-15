@@ -2,7 +2,7 @@ export class AreaDetailsClass{
     constructor
     ( 
         public name:string,   
-        public weatherDescription:string,
+        public description:string,
         public temp:number,
         public feelsLike:number,
         public humidity:number,

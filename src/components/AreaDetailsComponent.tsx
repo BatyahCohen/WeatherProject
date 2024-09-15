@@ -1,16 +1,20 @@
 import React from "react";
+import { AreaDetailsClass } from "../classes/AreaDetailsClass";
 
-export const AreaDetailsComponent = () =>
+export const AreaDetailsComponent = (props:any) =>
 {
+
+  let area=props.area; 
+
  return( 
       <div>
-      <h2>עיר</h2>
-      <p>תאור קצר</p> 
+      <h2>{area.name}</h2>
+      <p>{area.description}</p> 
       <span>סמל</span>
       <ul>
-        <li>לחות%</li>
-        <li>טמפ' מורגשת°C</li>
-        <li>טמפ' נמדדת°C</li>
+        <li>{area.temp}°C</li>
+        <li>{area.feelsLike}°C</li>
+        <li>{area.humidity}%</li>
       </ul>
     </div>
        )
