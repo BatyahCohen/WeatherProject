@@ -75,14 +75,16 @@ function App()
 
 
   return (
-    <div className="App" >
+    <div className="container">
+      <div className="row">
       {areas?.map((area:AreaDetailsClass)=>(
-        <div key={area.name}>
+        <div key={area.name} className="col-sm-6">
           {/* רק במידה וחזר מידע מהשרת ארצה להציג את נתוני מזג האויר 
           לכן אבדוק האם הנתונים שונים מהנתונים הראשוניים (והבלתי אפשריים) שאני הזנתי */}
         {area.temp!=500 && <AreaDetailsComponent area={area}></AreaDetailsComponent>}
         </div>
       ))}
+      </div>
     </div>
   );
 }

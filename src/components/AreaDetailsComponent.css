@@ -1,0 +1,86 @@
+/* עיצוב רקע כללי */
+body {
+    background-color: rgb(178, 222, 254); /* צבע תכלת */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* יגרום לדף להיות לפחות בגובה של חלון הדפדפן */
+  }
+  
+  /* עיצוב קונטיינר מרכזי */
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* מירכוז הכרטיסיות */
+    gap: 20px; /* ריווח הכרטיסיות */
+  }
+  
+  /* עיצוב  הכרטיסיות */
+  .panel {
+    width: 350px; /* הגדלת רוחב הכרטיסיות */
+    background-color: white; /* צבע רקע הכרטיסיות */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* צללים לכרטיסיות */
+    padding: 15px; /* הוספת padding פנימי לכרטיסיות */
+    box-sizing: border-box; /* כולל padding בגובה ורוחב הכרטיסיה */
+  }
+  
+  /* עיצוב של panel-heading */
+  .custom-panel-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* מיקום בצד שמאל */
+    justify-content: flex-start;
+  }
+  
+  /* עיצוב של panel-title-container */
+  .panel-title-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* מיקום האייקון בצד שמאל ושם העיר והתיאור בצד ימין */
+    align-items: flex-start; /* מיישר את אלמנטים למעלה */
+    direction: rtl; /* מסדר את התוכן בצורה מתאימה לעברית */
+  }
+  
+  /* כותרת של שם העיר */
+  .panel-title {
+    text-align: right; /* מיקום שם העיר בצד ימין */
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold; /* הדגשת שם העיר */
+    margin-right: 0; /* ביטול רווח מהקצה הימני */
+    width: 100%; /* מאפשר לשם העיר לתפוס את כל הרוחב הפנוי */
+  }
+  
+  /* אייקון של מזג האוויר */
+  .weather-icon {
+    font-size: 2.5em; /* הגדלת גודל האייקון */
+    text-align: left; /* מיקום האייקון בצד שמאל */
+    margin-left: 10px; /* הוספת רווח מהקצה השמאלי */
+  }
+  
+  /* תיאור מזג האוויר */
+  .description-text {
+    text-align: right; /* מיקום התיאור בצד ימין */
+    margin-top: 5px;
+    margin-bottom: 0;
+    width: 100%; /* מאפשר לתיאור לתפוס את כל הרוחב הפנוי */
+  }
+  
+  /* עיצוב טבלה */
+  .table {
+    width: 100%;
+  }
+  
+  .table th {
+    font-weight: normal; /* ביטול הדגשה בכותרות */
+    font-size: 0.9em; /* הקטנת גודל הטקסט בכותרות */
+    text-align: center; /* מרכז את הכותרות */
+  }
+  
+  .table td {
+    font-weight: bold; /* הדגשת תוכן הטבלה */
+    text-align: center; /* מרכז את התוכן */
+  }
+  
