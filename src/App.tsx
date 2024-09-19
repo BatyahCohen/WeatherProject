@@ -20,8 +20,16 @@ function App()
       const apiKey = 'abc79528bbc77eafa1af5743ad2318e1'; 
 
       const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}&units=metric&lang=he`;
+     
       //response המידע שחוזר הוא מסוג
       let response = await fetch(url);
+
+      //null במידה והתגובה מהשרת נכשלה נחזיר 
+      if(!response.ok){
+        console.error(response.status);
+        return null
+      }
+
      //json המרת המידע שהתקבל מהשרת לאוביקט
       let responseJson = await response.json();
      
@@ -32,11 +40,12 @@ function App()
     catch (error) {
       console.error(error);
       alert("יש בעיה בטעינת המידע מהשרת, אנא נסה שוב מאוחר יותר")
+      return null
     }
   }
   
   //פונקציה אסינכרונית המעדכנת את מערך האזורים במידע המתקבל מהשרת
-  const updatedAreasByApi = async () => {
+  async function updatedAreasByApi () {
    
     // יצירת מערך מקומי שיחזיק את כל האזורים המעודכנים
     // רק לאחר שיושלמו כל הקריאות לשרת יוחזר המערך בשלמותו promise.all מכיוון שאני משתמשת ב
@@ -45,6 +54,10 @@ function App()
         //קבלת מידע מהשרת על האזור הנוכחי
         const responseJson = await ApiConnect(area.lat, area.lon);
       
+        // היתה בעיה בשליפה מהשרת ולכן נחזיר את האזור הנוכחי כמו שהוא- שלא יוצג בגלל ההתניה null אם המידע הוא 
+        if(responseJson==null)
+          return area
+
         //יצירת אוביקט אזור מעודכן עפ"י המידע שהתקבל מהשרת והחזרתו למערך המקומי 
         return new AreaDetailsClass(
           area.name,
